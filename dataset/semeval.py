@@ -16,12 +16,12 @@ class SEMData(Dataset):
             path = os.path.join(root_path, 'test/npy/')
             print('loading test data')
 
-        self.word_feautre = np.load(path + 'word_feautre.npy')
+        self.word_feature = np.load(path + 'word_feature.npy')
         self.lexical_feature = np.load(path + 'lexical_feature.npy')
         self.right_pf = np.load(path + 'right_pf.npy')
         self.left_pf = np.load(path + 'left_pf.npy')
         self.labels = np.load(path + 'labels.npy')
-        self.x = list(zip(self.lexical_feature, self.word_feautre, self.left_pf, self.right_pf, self.labels))
+        self.x = list(zip(self.lexical_feature, self.word_feature, self.left_pf, self.right_pf, self.labels))
         print('loading finish')
 
     def __getitem__(self, idx):
@@ -64,7 +64,7 @@ class SEMLoad(object):
         else:
             self.lexical_feature, sen_feature, self.labels = self.parse_sen(self.test_path)
 
-        self.word_feautre, self.left_pf, self.right_pf = sen_feature
+        self.word_feature, self.left_pf, self.right_pf = sen_feature
         print('loading finish')
 
     def save(self):
@@ -72,7 +72,7 @@ class SEMLoad(object):
             prefix = 'train'
         else:
             prefix = 'test'
-        np.save(os.path.join(self.root_path, prefix, 'npy/word_feautre.npy'), self.word_feautre)
+        np.save(os.path.join(self.root_path, prefix, 'npy/word_feature.npy'), self.word_feature)
         np.save(os.path.join(self.root_path, prefix, 'npy/left_pf.npy'), self.left_pf)
         np.save(os.path.join(self.root_path, prefix, 'npy/right_pf.npy'), self.right_pf)
         np.save(os.path.join(self.root_path, prefix, 'npy/lexical_feature.npy'), self.lexical_feature)
