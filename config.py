@@ -7,6 +7,13 @@ data_dic ={
         # 'p2v_path': './dataset/SemEval/train/npy/p2v.npy',
         'vocab_size': 22315,  # vocab + UNK + BLANK
         'rel_num': 19
+    },
+
+    'MED' : {
+        'data_root': './dataset/Combine/',
+        'w2v_path': './dataset/Combine/train/npy/w2v.npy',
+        'vocab_size': 11570,
+        'rel_num': 8
     }
 }
 
@@ -14,7 +21,7 @@ data_dic ={
 class DefaultConfig(object):
 
     model = 'PCNN'  # the name of used model, in  <models/__init__.py>
-    data = 'SEM'  # SEM
+    data = 'MED'  # SEM
 
     result_dir = './out/'
     data_root = data_dic[data]['data_root']  # the data dir
@@ -24,7 +31,7 @@ class DefaultConfig(object):
     load_model_path = 'checkpoints/model.pth'  # the trained model
 
     seed = 99
-    batch_size = 128  # batch size
+    batch_size = 32  # batch size
     use_gpu = True  # user GPU or not
     gpu_id = 0
     num_workers = 0  # how many workers for loading data
@@ -41,7 +48,7 @@ class DefaultConfig(object):
 
     norm_emb=True
 
-    num_epochs = 100  # the number of epochs for training
+    num_epochs = 30  # the number of epochs for training
     drop_out = 0.5
     lr = 0.003  # initial learning rate
     lr_decay = 0.95  # when val_loss increase, lr = lr*lr_decay
@@ -56,7 +63,7 @@ class DefaultConfig(object):
     rel_filters_num = 100
 
     print_opt = 'DEF'
-    use_pcnn=True
+    use_pcnn = True
 
 
 def parse(self, kwargs):
@@ -81,4 +88,4 @@ def parse(self, kwargs):
 
 
 DefaultConfig.parse = parse
-opt =DefaultConfig()
+opt = DefaultConfig()
