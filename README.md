@@ -1,3 +1,5 @@
+# 我的一些注释写在Notation_from_ZLX.md里了
+
 2018.10.16更新:
 
 - master分支: Python 3.5x & Pytorch 0.4+
